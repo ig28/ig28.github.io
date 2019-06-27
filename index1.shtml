@@ -6,3 +6,59 @@
 <!--#include file="indexa.html"-->
 </body>
 </html>
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+    $.getJSON('http://wx.iuact.cc/wxjsdk.php', {url:top.location.href}, function (json) {
+
+        wx.config({
+            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            appId: json.appId,
+            timestamp: json.timestamp,
+            nonceStr: json.nonceStr,
+            signature: json.signature,
+            jsApiList: [
+                'onMenuShareQQ',
+                'uploadImage',
+                'chooseImage',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage'
+            ]
+        });
+
+    })
+
+    var wxData = {
+        url: "https://ig28.github.io/index1.shtml",
+        imgurl: "https://ig28.github.io/share.png",
+        title: "当代商城年中庆 大富翁好礼享不停",
+        desc: "当代商城年中庆，小米插座、蓝牙音响、蓝牙耳机免费送啦～快和小伙伴一起做大富翁挑战礼品吧！"
+    }
+
+    var weixinShare = {
+        title: wxData.title,
+        desc: wxData.desc,
+        link: wxData.url,
+        imgUrl: wxData.imgurl,
+        type: '',
+        success: function () {
+            share();
+        }
+    };
+
+    var friendShare = {
+        title: wxData.desc,
+        link: wxData.url,
+        imgUrl: wxData.imgurl,
+        success: function () {
+            share();
+        }
+    };
+
+
+    wx.ready(function () {
+        wx.onMenuShareTimeline(friendShare);
+        wx.onMenuShareAppMessage(weixinShare);
+        //     bindShareCallBack(function(){alert("fdsafdsaf");},this);
+    });
+</script>
