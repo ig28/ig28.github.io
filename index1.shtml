@@ -3,6 +3,6 @@
 <body>
 <h1>Hello World</h1>
 <p>index1.shtml, I'm hosted with GitHub Pages！</p>
-<!--#include file="a.html"-->
+<!--#include file="indexa.html"-->
 </body>
 </html>
