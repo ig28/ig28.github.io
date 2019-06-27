@@ -12,7 +12,10 @@
 <script type="text/javascript">
     var data = {appid: '', timestamp: '', nonceStr: '', signPackage: ''};
     if (navigator.appVersion.match(/MicroMessenger/i) == "MicroMessenger") {
-        $.getJSON('https://wx.iuact.cc/wxjsdk.php', {url: location.href}, function (res) {
+        $.ajax({
+	        url: "https://wx.iuact.cc/wxjsdk.php?url="+location.href,
+	        dataType: "jsonp" //指定服务器返回的数据类型
+        }).done(function (res){
             console.log("res=", res);
             if (res.err == 0) {
                 data.appid = res.appId;
@@ -29,7 +32,8 @@
                     jsApiList: ['checkJsApi', 'onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo',]
                 });
             }
-        });
+        })
+        //$.getJSON('https://wx.iuact.cc/wxjsdk.php', {url: location.href}, function (res) { });
         wx.ready(function () {
             var shareData = {
                 title: "当代商城年中庆 大富翁好礼享不停",
