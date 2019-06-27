@@ -17,7 +17,6 @@
 	        dataType: "jsonp" //指定服务器返回的数据类型
         }).done(function (res){
             console.log("res=", res);
-            if (res.err == 0) {
                 data.appid = res.appId;
                 data.timestamp = res.timestamp;
                 data.nonceStr = res.nonceStr;
@@ -31,7 +30,6 @@
                     signature: data.signature,
                     jsApiList: ['checkJsApi', 'onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo',]
                 });
-            }
         })
         //$.getJSON('https://wx.iuact.cc/wxjsdk.php', {url: location.href}, function (res) { });
         wx.ready(function () {
