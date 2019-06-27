@@ -7,58 +7,49 @@
 </body>
 </html>
 
+<script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
-    $.getJSON('https://wx.iuact.cc/wxjsdk.php', {url:top.location.href}, function (json) {
-
-        wx.config({
-            debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-            appId: json.appId,
-            timestamp: json.timestamp,
-            nonceStr: json.nonceStr,
-            signature: json.signature,
-            jsApiList: [
-                'onMenuShareQQ',
-                'uploadImage',
-                'chooseImage',
-                'onMenuShareTimeline',
-                'onMenuShareAppMessage'
-            ]
+    var data = {appid: '', timestamp: '', nonceStr: '', signPackage: ''};
+    if (navigator.appVersion.match(/MicroMessenger/i) == "MicroMessenger") {
+        $.getJSON('https://wx.iuact.cc/wxjsdk.php', {url: location.href}, function (res) {
+            console.log("res=", res);
+            if (res.err == 0) {
+                data.appid = res.appId;
+                data.timestamp = res.timestamp;
+                data.nonceStr = res.nonceStr;
+                data.signature = res.signature;
+                console.log("data=", data);
+                wx.config({
+                    debug: false,
+                    appId: data.appid,
+                    timestamp: data.timestamp,
+                    nonceStr: data.nonceStr,
+                    signature: data.signature,
+                    jsApiList: ['checkJsApi', 'onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo',]
+                });
+            }
         });
-
-    })
-
-    var wxData = {
-        url: "https://ig28.github.io/index1.shtml",
-        imgurl: "https://ig28.github.io/share.png",
-        title: "当代商城年中庆 大富翁好礼享不停",
-        desc: "当代商城年中庆，小米插座、蓝牙音响、蓝牙耳机免费送啦～快和小伙伴一起做大富翁挑战礼品吧！"
+        wx.ready(function () {
+            var shareData = {
+                title: "当代商城年中庆 大富翁好礼享不停",
+                desc: "当代商城年中庆，小米插座、蓝牙音响、蓝牙耳机免费送啦～快和小伙伴一起做大富翁挑战礼品吧！",
+                link: location.href,
+                imgUrl: "https://ig28.github.io/share.png",
+                trigger: function (res) {
+                },
+                success: function (res) {
+                    console.log('分享成功')
+                    if (typeof contentid === "undefined") contentid = 0;
+                    wxShareDlg.load(contentid);
+                },
+            };
+            wx.onMenuShareTimeline(shareData);
+            wx.onMenuShareAppMessage(shareData);
+            wx.onMenuShareQQ(shareData);
+            wx.onMenuShareWeibo(shareData);
+        });
+        wx.error(function (res) {
+        });
     }
-
-    var weixinShare = {
-        title: wxData.title,
-        desc: wxData.desc,
-        link: wxData.url,
-        imgUrl: wxData.imgurl,
-        type: '',
-        success: function () {
-            share();
-        }
-    };
-
-    var friendShare = {
-        title: wxData.desc,
-        link: wxData.url,
-        imgUrl: wxData.imgurl,
-        success: function () {
-            share();
-        }
-    };
-
-
-    wx.ready(function () {
-        wx.onMenuShareTimeline(friendShare);
-        wx.onMenuShareAppMessage(weixinShare);
-        //     bindShareCallBack(function(){alert("fdsafdsaf");},this);
-    });
 </script>
