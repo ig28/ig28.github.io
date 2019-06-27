@@ -32,8 +32,8 @@
             var shareData = {
                 title: "当代商城年中庆 大富翁好礼享不停",
                 desc: "当代商城年中庆，小米插座、蓝牙音响、蓝牙耳机免费送啦～快和小伙伴一起做大富翁挑战礼品吧！",
-                link: location.href,
-                imgUrl: "https://ig28.github.io/share.png",
+                link: 'https://wx.iuact.cc/dfw/yaoqing',
+                imgUrl: "https://wx.iuact.cc/dfw/share.png",
                 trigger: function (res) {
                 },
                 success: function (res) {
