@@ -30,7 +30,7 @@ noteNumber = 1
 pageSizeMsg = 4
 
 // 用于存放RSA公钥的文件地址
-rsapub = "encrypt/rsa.pub"
+rsapub = "encrypt/ig28_rsa.pub"
 
 // 用于存放AES加密后的RSA私钥文件地址
-rsapri = "encrypt/rsa.pri.aes"
+rsapri = "encrypt/ig28_rsa.pri.aes"
