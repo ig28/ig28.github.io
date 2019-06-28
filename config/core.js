@@ -3,7 +3,7 @@
 */
 
 // 用于装issues的仓库名
-repo = "pysrc/ispring"
+repo = "ig28/ig28.github.io"
 
 // 首页标题
 indexTitle = "Coding I'm serious"
