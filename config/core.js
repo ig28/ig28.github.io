@@ -6,10 +6,10 @@
 repo = "ig28/ig28.github.io"
 
 // 首页标题
-indexTitle = "Coding I'm serious"
+indexTitle = "Ig28"
 
 // 首页头标题
-indexHeader = "Welcome To Ispring"
+indexHeader = "Welcome To Ig28"
 
 // 用于匿名评论的github用户名
 user = "land123"
